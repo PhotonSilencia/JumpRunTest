@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0pi1cvvvd5wk"]
+
+[ext_resource type="Texture2D" uid="uid://d0pnrk4p5f3sy" path="res://art/enemyWalking_1.png" id="1_06mdt"]
+[ext_resource type="Script" path="res://mobs/mob_area.gd" id="1_bohir"]
+[ext_resource type="Texture2D" uid="uid://dj73ottw2jh88" path="res://art/enemyWalking_2.png" id="2_kudqr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0n1u6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_06mdt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kudqr")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ww32o"]
+radius = 48.0
+height = 134.0
+
+[node name="mobArea" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_bohir")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0n1u6")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ww32o")
+
+[node name="Direction" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Direction"]
+
+[node name="RayCast2D" type="RayCast2D" parent="Direction/Sprite2D"]
+position = Vector2(40, 0)
+target_position = Vector2(0, 95)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

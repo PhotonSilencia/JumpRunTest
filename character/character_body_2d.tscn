@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwdlrcm12lvcn"]
+
+[ext_resource type="Script" path="res://character/character_body_2d.gd" id="1_10u8k"]
+[ext_resource type="Texture2D" uid="uid://5xwxgk71oy8v" path="res://art/playerGrey_walk1.png" id="3_w71bi"]
+[ext_resource type="Texture2D" uid="uid://iwnkoe76lmsn" path="res://art/playerGrey_walk2.png" id="4_240an"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mac6j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w71bi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_240an")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3dqk"]
+radius = 54.0
+height = 136.0
+
+[node name="character" type="CharacterBody2D"]
+position = Vector2(67, 47)
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_10u8k")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mac6j")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_j3dqk")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

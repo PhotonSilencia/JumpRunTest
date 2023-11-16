@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtcojw8ocrlph"]
+
+[ext_resource type="Script" path="res://floor/end.gd" id="1_pjbyq"]
+
+[node name="end" type="Area2D"]
+collision_mask = 6
+script = ExtResource("1_pjbyq")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(600.25, 189)
+polygon = PackedVector2Array(-16.25, 13, -675.25, 16, -674.25, -15, 674.75, -12, 674.75, 13)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -75.0
+offset_top = 175.0
+offset_right = 1275.0
+offset_bottom = 203.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

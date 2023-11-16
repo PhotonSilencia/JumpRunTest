@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcjq2xx7lr3u6"]
+
+[ext_resource type="Script" path="res://mobs/mob.gd" id="1_mln1o"]
+[ext_resource type="Texture2D" uid="uid://d0pnrk4p5f3sy" path="res://art/enemyWalking_1.png" id="1_pdvye"]
+[ext_resource type="Texture2D" uid="uid://dj73ottw2jh88" path="res://art/enemyWalking_2.png" id="2_8ude4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4c0td"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pdvye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8ude4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mwnnw"]
+radius = 49.0
+height = 136.0
+
+[node name="Mob" type="CharacterBody2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_mln1o")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4c0td")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_mwnnw")

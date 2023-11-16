@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cf47qlhadpgu4"]
+
+[node name="floor" type="StaticBody2D" groups=["floor"]]
+position = Vector2(8, 592)
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 40, 216, 40, 216, 0, 0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 216.0
+offset_bottom = 40.0
+color = Color(0.384314, 0.458824, 0, 1)
